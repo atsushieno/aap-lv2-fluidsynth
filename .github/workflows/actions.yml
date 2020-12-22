@@ -28,9 +28,9 @@ jobs:
     - name: create local.properties
       run: echo "cmake.dir=/usr" > local.properties
     - name: in aap-lv2, workaround for https://github.com/actions/virtual-environments/issues/2228
-      run: echo cmake.dir=/usr > external/aap-lv2/local.properties
+      run: echo cmake.dir=/usr\nndk.dir=/usr/local/lib/android/sdk/ndk-bundle > external/aap-lv2/local.properties
     - name: in AAP core, workaround for https://github.com/actions/virtual-environments/issues/2228
-      run: echo cmake.dir=/usr > external/aap-lv2/dependencies/android-audio-plugin-framework/java/local.properties
+      run: echo cmake.dir=/usr\nndk.dir=/usr/local/lib/android/sdk/ndk-bundle > external/aap-lv2/dependencies/android-audio-plugin-framework/java/local.properties
     - name: build
       run: make
   
@@ -52,9 +52,9 @@ jobs:
     - name: create local.properties
       run: echo "cmake.dir=/usr/local" > local.properties
     - name: in aap-lv2, workaround for https://github.com/actions/virtual-environments/issues/2228
-      run: echo cmake.dir=/usr > external/aap-lv2/local.properties
+      run: echo cmake.dir=/usr\nndk.dir=/usr/local/lib/android/sdk/ndk-bundle > external/aap-lv2/local.properties
     - name: in AAP core, workaround for https://github.com/actions/virtual-environments/issues/2228
-      run: echo cmake.dir=/usr > external/aap-lv2/dependencies/android-audio-plugin-framework/java/local.properties
+      run: echo cmake.dir=/usr\nndk.dir=/usr/local/lib/android/sdk/ndk-bundle > external/aap-lv2/dependencies/android-audio-plugin-framework/java/local.properties
     - name: build
       run: make
       env:
