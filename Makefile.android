@@ -66,6 +66,7 @@ dist-fluidsynth-one:
 	mkdir -p dependencies/fluidsynth/$(A_ABI)/lib && cd dependencies/fluidsynth/$(A_ABI) && cp ../../../build/$(A_ABI)/src/libfluidsynth.so lib/ && cd ../../..
 	mkdir -p dependencies/fluidsynth/$(A_ABI)/include/
 	cp -R build/$(A_ABI)/include/* dependencies/fluidsynth/$(A_ABI)/include/
+	cp -R external/fluidsynth/include/* dependencies/fluidsynth/$(A_ABI)/include/
 
 clean:
 	rm -rf dist/* build/* external/oboe/build/* obj/local/* fluidsynth-asset-loader/build/*

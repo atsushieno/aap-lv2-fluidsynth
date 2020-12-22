@@ -10,7 +10,6 @@ cmake_minimum_required(VERSION 3.6.0)
 set (aap-fluidsynth_INCLUDES
         ../../../external/lv2
         ../../../dependencies/fluidsynth/${CMAKE_ANDROID_ARCH_ABI}/include/
-        ../../../external/fluidsynth/doc/android/fluidsynth-assetloader/
         # FIXME: once AGP fixes https://issuetracker.google.com/issues/172105145, we can remove this hack.
         ../../../aap-include-hack/include/
         )

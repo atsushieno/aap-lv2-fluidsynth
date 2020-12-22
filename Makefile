@@ -13,9 +13,8 @@ build-all: \
 
 get-prebuilt-deps: dependencies/fluidsynth-deps/dist/stamp
 
-dependencies/fluidsynth-deps/dist/stamp: aap-guitarix-binaries.zip android-libsndfile-binaries.zip androidaudioplugin-debug.aar
+dependencies/fluidsynth-deps/dist/stamp: aap-guitarix-binaries.zip androidaudioplugin-debug.aar
 	unzip aap-guitarix-binaries.zip -d dependencies/fluidsynth-deps
-	unzip android-libsndfile-binaries.zip -d dependencies/fluidsynth-deps
 	unzip androidaudioplugin-debug.aar -d dependencies/androidaudioplugin-aar
 	bash rewrite-pkg-config-paths.sh fluidsynth-deps
 	mkdir -p aap-fluidsynth/src/main/jniLibs/armeabi-v7a && cp dependencies/fluidsynth-deps/dist/armeabi-v7a/lib/*.so aap-fluidsynth/src/main/jniLibs/armeabi-v7a
@@ -26,9 +25,6 @@ dependencies/fluidsynth-deps/dist/stamp: aap-guitarix-binaries.zip android-libsn
 
 aap-guitarix-binaries.zip:
 	wget https://github.com/atsushieno/android-native-audio-builders/releases/download/r6/aap-guitarix-binaries.zip
-
-android-libsndfile-binaries.zip:
-	wget https://github.com/atsushieno/android-native-audio-builders/releases/download/r6/android-libsndfile-binaries.zip
 
 androidaudioplugin-debug.aar:
 	wget https://github.com/atsushieno/android-audio-plugin-framework/releases/download/v0.5.5/androidaudioplugin-debug.aar
