@@ -1,12 +1,13 @@
 
 ABIS_SIMPLE= x86 x86_64 armeabi-v7a arm64-v8a
+ANDROID_NDK=$(ANDROID_SDK_ROOT)/ndk/21.2.6472646
 
 all: build-all
 
 build-all: \
+	build-aap-lv2 \
 	get-prebuilt-deps \
 	build-fluidsynth-android \
-	build-aap-lv2 \
 	build-java
 
 ## downloads

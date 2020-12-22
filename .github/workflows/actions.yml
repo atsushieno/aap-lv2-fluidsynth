@@ -35,7 +35,6 @@ jobs:
       run: make
       env:
         ANDROID_SDK_ROOT: /home/runner/Android/Sdk
-        ANDROID_NDK: /home/runner/Android/Sdk/ndk-bundle
   
   osx-build:
     name: build on osx
@@ -62,7 +61,6 @@ jobs:
       run: make
       env:
         ANDROID_SDK_ROOT: /Users/runner/Library/Android/sdk
-        ANDROID_NDK: /Users/runner/Library/Android/sdk/ndk-bundle
     - name: upload artifact
       if: success()
       uses: actions/upload-artifact@v2
