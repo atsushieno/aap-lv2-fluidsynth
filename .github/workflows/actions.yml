@@ -27,8 +27,10 @@ jobs:
       run: sudo chmod 777 /usr/local/lib/android/sdk/ && mkdir -p /usr/local/lib/android/sdk/ndk
     - name: create local.properties
       run: echo "cmake.dir=/usr" > local.properties
+    - name: in aap-lv2, workaround for https://github.com/actions/virtual-environments/issues/2228
+      run: echo cmake.dir=/usr > external/aap-lv2/local.properties
     - name: in AAP core, workaround for https://github.com/actions/virtual-environments/issues/2228
-      run: echo cmake.dir=/usr > dependencies/android-audio-plugin-framework/java/local.properties
+      run: echo cmake.dir=/usr > external/aap-lv2/dependencies/aap-lv2/local.properties
     - name: build
       run: make
   
