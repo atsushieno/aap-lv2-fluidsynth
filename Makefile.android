@@ -1,0 +1,72 @@
+#
+# The public targets in this Makefile are: build, clean, wipe
+#
+# What `build` target does:
+#
+# - build libfluidsynth.so
+# - build libfluidsynth-assetloader.so
+#
+# Android app developers are supposed to copy all those shared
+# libraries into their apks (per ABI).
+#
+PWD=$(shell pwd)
+CMAKE=cmake
+
+ANDROID_NDK = $(HOME)/Android/Sdk/ndk/21.3.6528147
+
+ABIS_SIMPLE = x86 x86-64 armv7 arm64
+
+
+DIST_PATH=$(PWD)/dependencies/fluidsynth-deps/dist
+
+all: build
+
+.PHONY: build
+build: build-fluidsynth dist-fluidsynth
+
+define run_make_abi_target
+	make -f Makefile.android A_ABI=$(2) $(3)
+endef
+define run_make_abi_target-unsafe
+	if make -f Makefile.android A_ABI=$(2) $(3) ; then \
+		echo "ignore failure for $(1)..." ; \
+	fi
+endef
+
+define run_make_for_all_abi
+	$(call run_make_abi_target,x86,x86,$(1) )
+	$(call run_make_abi_target,x86_64,x86_64,$(1) )
+	$(call run_make_abi_target,armv7,armeabi-v7a,$(1) )
+	$(call run_make_abi_target-unsafe,arm64,arm64-v8a,$(1) )
+endef
+
+.PHONY: dist-fluidsynth
+dist-fluidsynth:
+	$(call run_make_for_all_abi, dist-fluidsynth-one)
+
+.PHONY: build-fluidsynth
+build-fluidsynth:
+	$(call run_make_for_all_abi, build-fluidsynth-one)
+
+build-fluidsynth-one:
+	mkdir -p build/$(A_ABI) && cd build/$(A_ABI) && \
+	LD_RUN_PATH=$(DIST_PATH)/$(A_ABI)/lib \
+	LD_LIBRARY_PATH=$(DIST_PATH)/$(A_ABI)/lib \
+	PKG_CONFIG_PATH=$(DIST_PATH)/$(A_ABI)/lib/pkgconfig/: \
+	PKG_CONFIG_LIBDIR=$(DIST_PATH)/$(A_ABI)/lib/pkgconfig/: \
+	$(CMAKE) -DCMAKE_INSTALL_PREFIX=$(PWD)/dist/$(A_ABI) \
+		-Denable-floats=1 \
+		-DCMAKE_VERBOSE_MAKEFILE=1 \
+		-DCMAKE_TOOLCHAIN_FILE=$(ANDROID_NDK)/build/cmake/android.toolchain.cmake \
+		-Denable-oss=off -Denable-libsndfile=on \
+		-DANDROID_NATIVE_API_LEVEL=android-27 -DANDROID_PLATFORM=android-27 -DANDROID_ABI=$(A_ABI) ../../external/fluidsynth && \
+	make
+
+dist-fluidsynth-one:
+	mkdir -p dependencies/fluidsynth/$(A_ABI)/lib && cd dependencies/fluidsynth/$(A_ABI) && cp ../../../build/$(A_ABI)/src/libfluidsynth.so lib/ && cd ../../..
+	mkdir -p dependencies/fluidsynth/$(A_ABI)/include/
+	cp -R build/$(A_ABI)/include/* dependencies/fluidsynth/$(A_ABI)/include/
+
+clean:
+	rm -rf dist/* build/* external/oboe/build/* obj/local/* fluidsynth-asset-loader/build/*
+

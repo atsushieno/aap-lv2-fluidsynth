@@ -1,0 +1,9 @@
+[submodule "external/fluidsynth"]
+	path = external/fluidsynth
+	url = https://github.com/Fluidsynth/fluidsynth.git
+[submodule "external/lv2"]
+	path = external/lv2
+	url = https://github.com/lv2/lv2.git
+[submodule "external/aap-lv2"]
+	path = external/aap-lv2
+	url = https://github.com/atsushieno/aap-lv2.git

@@ -1,0 +1,67 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdkVersion 30
+
+    defaultConfig {
+        minSdkVersion 29
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        externalNativeBuild {
+            cmake {
+            }
+        }
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    externalNativeBuild {
+        cmake {
+            path "src/main/CMakeLists.txt"
+        }
+    }
+    // FIXME: enable these sections once we migrated to prefab.
+    /*
+    buildFeatures {
+        prefab true
+    }
+    */
+
+    aaptOptions {
+        noCompress 'sf3'
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation 'org.androidaudioplugin:androidaudioplugin:0.6.3'
+    implementation 'org.androidaudioplugin:androidaudioplugin-lv2:0.1'
+    implementation 'org.androidaudioplugin:androidaudioplugin-ui-androidx:0.6.3'
+
+    testImplementation 'junit:junit:4.13.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+}
+
