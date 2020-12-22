@@ -33,8 +33,6 @@ jobs:
       run: echo cmake.dir=/usr > external/aap-lv2/dependencies/android-audio-plugin-framework/java/local.properties
     - name: build
       run: make
-      env:
-        ANDROID_SDK_ROOT: /home/runner/Android/Sdk
   
   osx-build:
     name: build on osx
