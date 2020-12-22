@@ -30,7 +30,7 @@ jobs:
     - name: in aap-lv2, workaround for https://github.com/actions/virtual-environments/issues/2228
       run: echo cmake.dir=/usr > external/aap-lv2/local.properties
     - name: in AAP core, workaround for https://github.com/actions/virtual-environments/issues/2228
-      run: echo cmake.dir=/usr > external/aap-lv2/dependencies/aap-lv2/local.properties
+      run: echo cmake.dir=/usr > external/aap-lv2/dependencies/android-audio-plugin-framework/java/local.properties
     - name: build
       run: make
       env:
@@ -54,8 +54,10 @@ jobs:
         brew install doxygen ninja graphviz lilv
     - name: create local.properties
       run: echo "cmake.dir=/usr/local" > local.properties
+    - name: in aap-lv2, workaround for https://github.com/actions/virtual-environments/issues/2228
+      run: echo cmake.dir=/usr > external/aap-lv2/local.properties
     - name: in AAP core, workaround for https://github.com/actions/virtual-environments/issues/2228
-      run: echo cmake.dir=/usr/local > dependencies/android-audio-plugin-framework/java/local.properties
+      run: echo cmake.dir=/usr > external/aap-lv2/dependencies/android-audio-plugin-framework/java/local.properties
     - name: build
       run: make
       env:
