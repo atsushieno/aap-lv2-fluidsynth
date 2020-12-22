@@ -32,7 +32,7 @@ androidaudioplugin-debug.aar:
 ## Build utility
 
 build-fluidsynth-android:
-	make -f Makefile.android build-fluidsynth dist-fluidsynth
+	make -f Makefile.android ANDROID_NDK=$(ANDROID_NDK) build-fluidsynth dist-fluidsynth
 
 build-aap-lv2:
 	cd external/aap-lv2 && make build-non-app
