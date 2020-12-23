@@ -1,6 +1,6 @@
 # aap-lv2-fluidsynth: Fluidsynth plugin for AAP via LV2
 
-This repository is for Fluidsynth plugin example for [AAP](https://github.com/atsushieno/android-audio-plugin-framework/). It is powered by LV2 using [aap-lv2](https://github.com/atsushieno/aap-lv2/).
+This repository is for [Fluidsynth](https://github.com/FluidSynth/fluidsynth) plugin example for [AAP](https://github.com/atsushieno/android-audio-plugin-framework/). It is powered by LV2 using [aap-lv2](https://github.com/atsushieno/aap-lv2/).
 
 The plugin application itself is not really featureful yet. The SoundFont file is fixed as FluidR3_GM.sf3 in the C++ code. It can be made customizible, but it does not happen yet.
 
