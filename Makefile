@@ -16,12 +16,14 @@ get-prebuilt-deps: dependencies/fluidsynth-deps/dist/stamp
 
 dependencies/fluidsynth-deps/dist/stamp: aap-guitarix-binaries.zip androidaudioplugin-debug.aar
 	unzip aap-guitarix-binaries.zip -d dependencies/fluidsynth-deps
+	rm -f dependencies/fluidsynth-deps/dist/*/lib/libc++_shared.so
 	unzip androidaudioplugin-debug.aar -d dependencies/androidaudioplugin-aar
+	rm -f dependencies/androidaudioplugin-aar/jni/*/libc++_shared.so
 	bash rewrite-pkg-config-paths.sh fluidsynth-deps
-	mkdir -p aap-fluidsynth/src/main/jniLibs/armeabi-v7a && cp dependencies/fluidsynth-deps/dist/armeabi-v7a/lib/*.so aap-fluidsynth/src/main/jniLibs/armeabi-v7a
-	mkdir -p aap-fluidsynth/src/main/jniLibs/arm64-v8a && cp dependencies/fluidsynth-deps/dist/arm64-v8a/lib/*.so aap-fluidsynth/src/main/jniLibs/armeabi-v7a
-	mkdir -p aap-fluidsynth/src/main/jniLibs/x86 && cp dependencies/fluidsynth-deps/dist/x86/lib/*.so aap-fluidsynth/src/main/jniLibs/armeabi-v7a
-	mkdir -p aap-fluidsynth/src/main/jniLibs/x86_64 && cp dependencies/fluidsynth-deps/dist/x86_64/lib/*.so aap-fluidsynth/src/main/jniLibs/armeabi-v7a
+	for a in $(ABIS_SIMPLE) ; do \
+		mkdir -p aap-fluidsynth/src/main/jniLibs/$$a ; \
+		cp -R dependencies/fluidsynth-deps/dist/$$a/lib/*.so aap-fluidsynth/src/main/jniLibs/$$a ; \
+	done
 	touch dependencies/fluidsynth-deps/dist/stamp
 
 aap-guitarix-binaries.zip:
