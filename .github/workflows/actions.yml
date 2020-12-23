@@ -29,6 +29,12 @@ jobs:
       run: echo "yes" | $ANDROID_HOME/tools/bin/sdkmanager "cmake;3.18.1" --channel=3
     - name: build
       run: make
+    - name: upload artifact
+      if: success()
+      uses: actions/upload-artifact@v2
+      with:
+        name: aap-fluidsynth-debug.apk
+        path: ./aap-fluidsynth/build/outputs/apk/debug/aap-fluidsynth-debug.apk
   
   osx-build:
     name: build on osx
@@ -51,9 +57,3 @@ jobs:
       run: make
       env:
         ANDROID_SDK_ROOT: /Users/runner/Library/Android/sdk
-    - name: upload artifact
-      if: success()
-      uses: actions/upload-artifact@v2
-      with:
-        name: aap-fluidsynth-debug.apk
-        path: ./aap-fluidsynth/build/outputs/apk/debug/aap-fluidsynth-debug.apk
