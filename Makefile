@@ -27,7 +27,7 @@ dependencies/fluidsynth-deps/dist/stamp: aap-guitarix-binaries.zip androidaudiop
 	touch dependencies/fluidsynth-deps/dist/stamp
 
 aap-guitarix-binaries.zip:
-	wget https://github.com/atsushieno/android-native-audio-builders/releases/download/r6/aap-guitarix-binaries.zip
+	wget https://github.com/atsushieno/android-native-audio-builders/releases/download/r8.3/aap-guitarix-binaries.zip
 
 androidaudioplugin-debug.aar:
 	wget https://github.com/atsushieno/android-audio-plugin-framework/releases/download/v0.5.5/androidaudioplugin-debug.aar
@@ -36,6 +36,10 @@ androidaudioplugin-debug.aar:
 
 build-fluidsynth-android:
 	make -f Makefile.android ANDROID_NDK=$(ANDROID_NDK) build-fluidsynth dist-fluidsynth
+	for a in $(ABIS_SIMPLE) ; do \
+		mkdir -p aap-fluidsynth/src/main/jniLibs/$$a ; \
+		cp dependencies/fluidsynth/$$a/lib/*.so aap-fluidsynth/src/main/jniLibs/$$a ; \
+	done
 
 build-aap-lv2:
 	cd external/aap-lv2 && make build-non-app
