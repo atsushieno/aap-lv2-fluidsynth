@@ -24,6 +24,7 @@ jobs:
     runs-on: ubuntu-20.04
     needs: linux-init
     if: ${{ needs.linux-init.outputs.skip == 'false' }}
+    steps:
     - name: cache NDK
       uses: actions/cache@v2
       env:
