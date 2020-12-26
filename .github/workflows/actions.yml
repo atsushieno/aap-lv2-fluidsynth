@@ -5,7 +5,7 @@ on:
   pull_request:
 
 jobs:
-  linux-build:
+  linux-init:
     name: build on linux
     runs-on: ubuntu-20.04
     steps:
@@ -13,6 +13,17 @@ jobs:
       uses: actions/checkout@v1
       with:
         submodules: recursive
+    - name: CI skip
+      uses: mstachniuk/ci-skip@v1
+      with:
+        commit-filter: '[ci skip];[CI skip];[CI-skip];[ci-skip];[CI SKIP];[CI-SKIP]'
+        commit-filter-separator: ';'
+
+  linux-build:
+    name: build on linux
+    runs-on: ubuntu-20.04
+    needs: linux-init
+    if: ${{ needs.linux-init.outputs.skip == 'false' }}
     - name: cache NDK
       uses: actions/cache@v2
       env:
@@ -43,14 +54,26 @@ jobs:
         name: aap-fluidsynth-debug.apk
         path: ./aap-fluidsynth/build/outputs/apk/debug/aap-fluidsynth-debug.apk
   
-  osx-build:
-    name: build on osx
+  osx-init:
+    name: init on osx
     runs-on: macos-10.15
     steps:
     - name: checkout
       uses: actions/checkout@v1
       with:
         submodules: recursive
+    - name: CI skip
+      uses: mstachniuk/ci-skip@v1
+      with:
+        commit-filter: '[ci skip];[CI skip];[CI-skip];[ci-skip];[CI SKIP];[CI-SKIP]'
+        commit-filter-separator: ';'
+
+  osx-build:
+    name: build on osx
+    runs-on: macos-10.15
+    needs: osx-init
+    if: ${{ needs.osx-init.outputs.skip == 'false' }}
+    steps:
     - name: cache NDK
       uses: actions/cache@v2
       env:
