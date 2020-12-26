@@ -8,6 +8,9 @@ jobs:
   linux-init:
     name: build on linux
     runs-on: ubuntu-20.04
+    outputs:
+      skip: ${{ steps.ci-skip-step.outputs.ci-skip }}
+      skip-not: ${{ steps.ci-skip-step.outputs.ci-skip-not }}
     steps:
     - name: checkout
       uses: actions/checkout@v1
@@ -58,6 +61,9 @@ jobs:
   osx-init:
     name: init on osx
     runs-on: macos-10.15
+    outputs:
+      skip: ${{ steps.ci-skip-step.outputs.ci-skip }}
+      skip-not: ${{ steps.ci-skip-step.outputs.ci-skip-not }}
     steps:
     - name: checkout
       uses: actions/checkout@v1
