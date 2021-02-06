@@ -22,6 +22,8 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
+    // See android-audio-plugin-framework/java/androidaudioplugin/build.gradle to find out why it is required...
+    ndkVersion "21.3.6528147"
 
     buildTypes {
         release {
