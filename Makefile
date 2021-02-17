@@ -1,6 +1,6 @@
 
 ABIS_SIMPLE= x86 x86_64 armeabi-v7a arm64-v8a
-ANDROID_NDK=$(ANDROID_SDK_ROOT)/ndk/21.2.6472646
+ANDROID_NDK=$(ANDROID_SDK_ROOT)/ndk/21.3.6528147
 
 all: build-all
 
