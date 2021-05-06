@@ -1,0 +1,6 @@
+<devices>
+    <device name="aap-fluidsynth" manufacturer="androidaudioplugin.org" product="aap-fluidsynth">
+        <input-port name="input" />
+    </device>
+</devices>
+
