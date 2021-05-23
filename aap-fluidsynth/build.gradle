@@ -10,7 +10,7 @@ android {
         minSdkVersion 29
         targetSdkVersion 30
         versionCode 1
-        versionName "0.1.13"
+        versionName "0.1.14"
 
         externalNativeBuild {
             cmake {
@@ -20,7 +20,6 @@ android {
         }
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
     }
     // See android-audio-plugin-framework/java/androidaudioplugin/build.gradle to find out why it is required...
     ndkVersion "21.3.6528147"
@@ -39,7 +38,7 @@ android {
 
     externalNativeBuild {
         cmake {
-            path "src/main/CMakeLists.txt"
+            path "src/main/cpp/CMakeLists.txt"
         }
     }
     // FIXME: enable these sections once we migrated to prefab.
@@ -55,9 +54,10 @@ android {
 }
 
 dependencies {
-    implementation 'org.androidaudioplugin:androidaudioplugin-lv2:0.1.13'
-    implementation 'org.androidaudioplugin:androidaudioplugin-ui-compose:0.6.12'
-    implementation 'org.androidaudioplugin:androidaudioplugin-midi-device-service:0.6.12'
+    implementation 'org.androidaudioplugin:androidaudioplugin-lv2:0.1.14'
+    implementation 'org.androidaudioplugin:androidaudioplugin:0.6.13'
+    implementation 'org.androidaudioplugin:androidaudioplugin-ui-compose:0.6.13'
+    implementation 'org.androidaudioplugin:androidaudioplugin-midi-device-service:0.6.13'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

@@ -2,16 +2,20 @@
 
 buildscript {
     ext.kotlin_version = '1.4.32'
+    ext.dokkaVersion = '1.4.30'
+    ext.compose_version = '1.0.0-beta05'
+
     repositories {
         google()
         mavenCentral()
         maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
+        maven { url 'https://maven.pkg.jetbrains.space/public/p/compose/dev' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.0-alpha15'
+        classpath 'com.android.tools.build:gradle:7.1.0-alpha01'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokkaVersion"
+        classpath "org.jetbrains.compose:compose-gradle-plugin:0.3.1"
     }
 }
 
