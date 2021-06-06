@@ -10,7 +10,7 @@ android {
         minSdkVersion 29
         targetSdkVersion 30
         versionCode 1
-        versionName "0.1.14"
+        versionName "0.1.15"
 
         externalNativeBuild {
             cmake {
@@ -38,6 +38,7 @@ android {
 
     externalNativeBuild {
         cmake {
+            version "3.18.1"
             path "src/main/cpp/CMakeLists.txt"
         }
     }
@@ -54,10 +55,10 @@ android {
 }
 
 dependencies {
-    implementation 'org.androidaudioplugin:androidaudioplugin-lv2:0.1.14'
-    implementation 'org.androidaudioplugin:androidaudioplugin:0.6.13'
-    implementation 'org.androidaudioplugin:androidaudioplugin-ui-compose:0.6.13'
-    implementation 'org.androidaudioplugin:androidaudioplugin-midi-device-service:0.6.13'
+    implementation 'org.androidaudioplugin:androidaudioplugin-lv2:0.1.15'
+    implementation 'org.androidaudioplugin:androidaudioplugin:0.6.15'
+    implementation 'org.androidaudioplugin:androidaudioplugin-ui-compose:0.6.15'
+    implementation 'org.androidaudioplugin:androidaudioplugin-midi-device-service:0.6.15'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
