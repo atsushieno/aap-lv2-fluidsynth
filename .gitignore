@@ -5,10 +5,7 @@ local.properties
 /*/build
 build
 
-android-libsndfile-binaries.zip
-aap-guitarix-binaries.zip
 androidaudioplugin-debug.aar
-
-dependencies/fluidsynth-deps/
-dependencies/fluidsynth/
+dependencies/stamp-aap-aar
+dependencies/stamp-fluidsynth
 dependencies/androidaudioplugin-aar/
