@@ -18,8 +18,8 @@ jobs:
       env:
         cache-name: cache-ndk
       with:
-        path: /usr/local/lib/android/sdk/ndk/21.2.6472646
-        key: ndk_r21c_linux
+        path: /usr/local/lib/android/sdk/ndk/21.3.6528147
+        key: ndk_r21d_linux
     - name: cache fluidsynth deps archives
       uses: actions/cache@v2
       env:
@@ -43,7 +43,7 @@ jobs:
     - name: build
       run: make
       env:
-        NDK: /usr/local/lib/android/sdk/ndk
+        NDK: /usr/local/lib/android/sdk/ndk/21.3.6528147
     - name: upload artifact
       if: success()
       uses: actions/upload-artifact@v2
@@ -65,8 +65,8 @@ jobs:
       env:
         cache-name: cache-ndk
       with:
-        path: /Users/runner/Library/Android/sdk/ndk/21.2.6472646
-        key: ndk_r21c_osx
+        path: /Users/runner/Library/Android/sdk/ndk/21.3.6528147
+        key: ndk_r21d_osx
     - name: set up JDK 11
       uses: actions/setup-java@v1
       with:
