@@ -20,6 +20,14 @@ jobs:
       with:
         path: /usr/local/lib/android/sdk/ndk/21.2.6472646
         key: ndk_r21c_linux
+    - name: cache fluidsynth deps archives
+      uses: actions/cache@v2
+      env:
+        cache-name: cache-fluidsynth-deps-archives
+      with:
+        path: external/fluidsynth/test-android/build-scripts/archives/
+        # bump rX every time we update deps versions
+        key: fluidsynth-deps-archives-r1
     - name: apt update
       run: |
         sudo apt-get update
