@@ -9,26 +9,26 @@ build-all: \
 	build-native \
 	build-java
 
-build-native: dependencies/fluidsynth-deps/dist/stamp dependencies/fluidsynth-deps/dist/stamp-aap-aar
+build-native: dependencies/stamp-fluidsynth dependencies/stamp-aap-aar
 
 external/fluidsynth/test-android/build-scripts/archives/.stamp:
 	cd external/fluidsynth/test-android/build-scripts && bash ./download.sh && touch archives/.stamp
 
-dependencies/fluidsynth-deps/dist/stamp: make-jniLibsDir external/fluidsynth/test-android/build-scripts/archives/.stamp
+dependencies/stamp-fluidsynth: make-jniLibsDir external/fluidsynth/test-android/build-scripts/archives/.stamp
 	cd external/fluidsynth/test-android/build-scripts && bash ./build-all-archs.sh
 	cp -R external/fluidsynth/test-android/build-scripts/build-artifacts/lib/*	aap-fluidsynth/src/main/jniLibs/
 	rm -f aap-fluidsynth/src/main/jniLibs/*/libc++_shared.so
-	touch dependencies/fluidsynth-deps/dist/stamp
+	touch dependencies/stamp-fluidsynth
 
 make-jniLibsDir:
 	for a in $(ABIS_SIMPLE) ; do \
 		mkdir -p aap-fluidsynth/src/main/jniLibs/$$a ; \
 	done
 
-dependencies/fluidsynth-deps/dist/stamp-aap-aar:
+dependencies/stamp-aap-aar:
 	cp external/aap-lv2/dependencies/android-audio-plugin-framework/java/androidaudioplugin/build/outputs/aar/androidaudioplugin-debug.aar .
 	unzip androidaudioplugin-debug.aar -d dependencies/androidaudioplugin-aar
-	touch dependencies/fluidsynth-deps/dist/stamp-aap-aar
+	touch dependencies/stamp-aap-aar
 
 build-aap-lv2:
 	cd external/aap-lv2 && make build-non-app
