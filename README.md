@@ -8,13 +8,13 @@ The plugin application itself is not really featureful yet. The SoundFont file i
 
 `make` should take care of the builds. See [GitHub Actions script](.github/workflows/actions.yml) for further normative setup.
 
+Building fluidsynth takes a while, but once native libraries are built and then automatically copied into `aap-fluidsynth/src/main/jniLibs`, then you don't have to build them again. Android Studio run/debug is usable (or `./gradlew *`).
+
 ## Hacking
 
 In this repo, we build fluidsynth for Android without Oboe and OpenSLES, unlike the official build does (the official build script is written by atsushieno as well). It is simply because we only need synthesizer part without native audio access.
 
-While Fluidsynth build is CMake based, it could not simply specified in build.gradle (it fails to compile). Therefore we use somewhat modified version of the build script (Makefile.android) from the official repo.
-
-It still heavily depends on glib, so we use artifacts from [atsushieno/android-native-audio-builders](https://github.com/atsushieno/android-native-audio-builders/) repo.
+While Fluidsynth build is CMake based, it could not simply specified in build.gradle (it fails to compile). Therefore we use somewhat modified version of the build script from my fork (can be upstreamed but the related tasks are not done yet).
 
 LV2 plugin implementation is quite simple (maybe too simple). There is no parameters exposed, and states to persistize. There are many rooms to improve.
 

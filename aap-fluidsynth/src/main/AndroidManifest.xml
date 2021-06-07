@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="org.androidaudioplugin.aap_fluidsynth">
 
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
@@ -11,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="org.androidaudioplugin.ui.compose.PluginListActivity">
+        <!-- Lint reports bogus issue report that this Activity is not derived from Activity -->
+        <activity android:name="org.androidaudioplugin.ui.compose.PluginListActivity"
+            tools:ignore="Instantiatable">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
