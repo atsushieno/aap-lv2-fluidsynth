@@ -8,7 +8,6 @@ jobs:
   linux-build:
     name: build on linux
     runs-on: ubuntu-20.04
-    needs: linux-init
     steps:
     - name: checkout
       uses: actions/checkout@v1
@@ -45,7 +44,6 @@ jobs:
   osx-build:
     name: build on osx
     runs-on: macos-10.15
-    needs: osx-init
     if: false
     steps:
     - name: checkout
