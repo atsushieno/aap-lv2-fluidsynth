@@ -49,6 +49,12 @@ android {
     }
     */
 
+    // https://stackoverflow.com/questions/66343654/upgrading-to-jetpack-compose-1-0-0-alpha12-with-kotlin-1-4-30-error
+    packagingOptions {
+        exclude 'META-INF/AL2.0'
+        exclude 'META-INF/LGPL2.1'
+    }
+
     aaptOptions {
         noCompress 'sf3'
     }
@@ -61,7 +67,9 @@ dependencies {
     implementation 'org.androidaudioplugin:androidaudioplugin-midi-device-service:0.6.15'
 
     testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test:rules:1.3.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
+    androidTestImplementation 'org.androidaudioplugin:androidaudioplugin-testing:0.6.15'
 }
 
