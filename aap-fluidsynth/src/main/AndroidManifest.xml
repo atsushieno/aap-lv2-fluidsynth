@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme">
         <!-- Lint reports bogus issue report that this Activity is not derived from Activity -->
         <activity android:name="org.androidaudioplugin.ui.compose.PluginListActivity"
-            tools:ignore="Instantiatable">
+            tools:ignore="Instantiatable" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <service android:name="org.androidaudioplugin.AudioPluginService"
-            android:label="@string/app_name">
+            android:label="@string/app_name" android:exported="true">
             <intent-filter>
                 <action
                     android:name="org.androidaudioplugin.AudioPluginService" />
