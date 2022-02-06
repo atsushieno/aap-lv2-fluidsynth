@@ -65,6 +65,7 @@ dependencies {
     implementation "org.androidaudioplugin:androidaudioplugin:$aap_version"
     implementation "org.androidaudioplugin:androidaudioplugin-ui-compose:$aap_version"
     implementation "org.androidaudioplugin:androidaudioplugin-midi-device-service:$aap_version"
+    implementation "androidx.startup:startup-runtime:1.1.0"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test:rules:1.4.0'

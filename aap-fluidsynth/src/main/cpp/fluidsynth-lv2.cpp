@@ -12,7 +12,7 @@
 #include "fluid_androidasset.h"
 #include <jni.h>
 #include <string>
-#include "aap/android-context.h"
+#include "android-application-context.h"
 
 #define FLUIDSYNTH_LV2_URI "https://github.com/atsushieno/aap-fluidsynth"
 #define FLUIDSYNTH_LV2_ATOM_INPUT_PORT 0
@@ -63,10 +63,12 @@ LV2_Handle fluidsynth_lv2_instantiate(
     handle->synth = synth;
 
     JNIEnv* env;
-    JavaVM* vm = aap::get_android_jvm();
+    JavaVM* vm = get_android_jvm();
+    assert(vm != NULL);
     vm->AttachCurrentThread(&env, NULL);
+    assert(env != NULL);
     handle->jnienv = env;
-    auto assetManager = aap::get_android_asset_manager(env);
+    auto assetManager = get_android_asset_manager(env);
     handle->asset_sfloader = new_fluid_android_asset_sfloader(settings, assetManager);
     fluid_synth_add_sfloader(synth, handle->asset_sfloader);
 
@@ -169,10 +171,15 @@ void fluidsynth_lv2_run(LV2_Handle instance, uint32_t sample_count) {
 void fluidsynth_lv2_deactivate(LV2_Handle instance) {
 }
 
+
 void fluidsynth_lv2_cleanup(LV2_Handle instance) {
 	FluidsynthLV2Handle* a = (FluidsynthLV2Handle*) instance;
 	delete_fluid_sfloader(a->asset_sfloader);
-    JavaVM* vm = aap::get_android_jvm();
+    JavaVM* vm = get_android_jvm();
+    assert(vm != nullptr);
+    JNIEnv* env;
+    vm->AttachCurrentThread(&env, nullptr);
+    unset_application_context(env);
     vm->DetachCurrentThread();
     delete_fluid_synth(a->synth);
     delete_fluid_settings(a->settings);

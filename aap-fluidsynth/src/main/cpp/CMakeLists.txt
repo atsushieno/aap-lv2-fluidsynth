@@ -11,12 +11,13 @@ set (aap-fluidsynth_INCLUDES
         ../../../../external/lv2
         ../../../../external/fluidsynth/test-android/build-scripts/build-artifacts/include/
         # FIXME: once AGP fixes https://issuetracker.google.com/issues/172105145, we can remove this hack.
-        ../../../../aap-include-hack/include/
+        ../../../../external/aap-lv2/external/android-audio-plugin-framework/native/plugin-api/include
         )
 
 set (aap-fluidsynth_SOURCES
         fluidsynth-lv2.cpp
         fluid_androidasset.c
+        android-application-context.cpp
         )
 
 add_library (aap-fluidsynth SHARED ${aap-fluidsynth_SOURCES})

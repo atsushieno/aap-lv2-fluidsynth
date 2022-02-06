@@ -44,5 +44,12 @@
             <meta-data android:name="android.media.midi.MidiDeviceService"
                 android:resource="@xml/midi_device_info" />
         </service>
+
+        <provider android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false"
+            tools:node="merge">
+            <meta-data android:name="org.androidaudioplugin.aap_fluidsynth.JNIInitializer" android:value="androidx.startup" />
+        </provider>
     </application>
 </manifest>
