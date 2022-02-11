@@ -174,17 +174,12 @@ void fluidsynth_lv2_deactivate(LV2_Handle instance) {
 
 void fluidsynth_lv2_cleanup(LV2_Handle instance) {
 	FluidsynthLV2Handle* a = (FluidsynthLV2Handle*) instance;
-	delete_fluid_sfloader(a->asset_sfloader);
-    JavaVM* vm = get_android_jvm();
-    assert(vm != nullptr);
-    JNIEnv* env;
-    vm->AttachCurrentThread(&env, nullptr);
-    unset_application_context(env);
-    vm->DetachCurrentThread();
     delete_fluid_synth(a->synth);
     delete_fluid_settings(a->settings);
 	free((void*) a->bundle_path);
 	free(a);
+    JavaVM* vm = get_android_jvm();
+    assert(vm != nullptr);
 }
 
 const void * fluidsynth_lv2_extension_data(const char * uri) {
