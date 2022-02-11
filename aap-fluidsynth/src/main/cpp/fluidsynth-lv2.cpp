@@ -26,7 +26,6 @@ typedef struct {
 	fluid_settings_t *settings;
 	fluid_synth_t *synth;
 	fluid_sfloader_t *asset_sfloader;
-    JNIEnv *jnienv;
 	double sample_rate;
 	const char * bundle_path;
 	float* ports[3];
@@ -67,7 +66,6 @@ LV2_Handle fluidsynth_lv2_instantiate(
     assert(vm != NULL);
     vm->AttachCurrentThread(&env, NULL);
     assert(env != NULL);
-    handle->jnienv = env;
     auto assetManager = get_android_asset_manager(env);
     handle->asset_sfloader = new_fluid_android_asset_sfloader(settings, assetManager);
     fluid_synth_add_sfloader(synth, handle->asset_sfloader);

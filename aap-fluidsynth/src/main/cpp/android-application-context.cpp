@@ -5,11 +5,13 @@
 JavaVM *android_vm{nullptr};
 jobject application_context{nullptr};
 
+// Called only at bootstrap (JNIInitializer)
 extern "C" JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 	android_vm = vm;
 	return JNI_VERSION_1_6;
 }
 
+// Called only at bootstrap (JNIInitializer)
 extern "C"
 JNIEXPORT void JNICALL
 Java_org_androidaudioplugin_aap_1fluidsynth_JNIInitializer_setApplicationContext(
@@ -18,11 +20,6 @@ Java_org_androidaudioplugin_aap_1fluidsynth_JNIInitializer_setApplicationContext
 }
 
 JavaVM *get_android_jvm() { return android_vm; }
-
-void unset_application_context(JNIEnv *env) {
-    if (application_context)
-        env->DeleteGlobalRef(application_context);
-}
 
 AAssetManager *get_android_asset_manager(JNIEnv* env) {
     if (!application_context)
