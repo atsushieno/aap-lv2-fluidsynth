@@ -4,8 +4,8 @@ buildscript {
     ext.kotlin_version = '1.6.10'
     ext.dokkaVersion = '1.6.10'
     ext.compose_version = '1.1.0'
-    ext.aap_version = '0.6.24'
-    ext.aap_lv2_version = '0.1.22'
+    ext.aap_version = '0.6.26'
+    ext.aap_lv2_version = '0.1.24'
     ext.ndk_version = '21.4.7075529'
 
     repositories {
@@ -14,7 +14,7 @@ buildscript {
         maven { url 'https://maven.pkg.jetbrains.space/public/p/compose/dev' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.3.0-alpha02'
+        classpath 'com.android.tools.build:gradle:7.3.0-alpha03'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokkaVersion"
         classpath "org.jetbrains.compose:compose-gradle-plugin:1.0.1"
