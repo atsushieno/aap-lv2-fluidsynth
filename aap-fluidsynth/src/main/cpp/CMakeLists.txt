@@ -4,7 +4,6 @@
 
 cmake_minimum_required(VERSION 3.6.0)
 
-
 #get_filename_component (AAPDIR "${CMAKE_CURRENT_LIST_DIR}/../../../dependencies/android-audio-plugin-framework" ABSOLUTE)
 
 set (aap-fluidsynth_INCLUDES
@@ -53,10 +52,8 @@ target_compile_options (aap-fluidsynth
 
 target_link_libraries (aap-fluidsynth android log androidaudioplugin fluidsynth)
 
-# set non-zero this if you want to debug with AddressSanitizer
-set(AAP_DEBUG_WITH_ASAN 0)
-
-if (AAP_DEBUG_WITH_ASAN)
+# You can set it via build.gradle.
+if (${AAP_ENABLE_ASAN})
     target_compile_options (aap-fluidsynth
             PUBLIC
             -fsanitize=address -fno-omit-frame-pointer
