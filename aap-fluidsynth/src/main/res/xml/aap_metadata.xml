@@ -1,4 +1,7 @@
 <plugins>  <plugin backend="LV2" name="aap-fluidsynth" category="Instrument" author="Atsushi Eno" manufacturer="" unique-id="lv2:https://github.com/atsushieno/aap-fluidsynth" library="libandroidaudioplugin-lv2.so" entrypoint="GetAndroidAudioPluginFactoryLV2Bridge" assets="/lv2/aap-fluidsynth.lv2/">
+    <extensions>
+      <extension uri="urn://androidaudioplugin.org/extensions/presets/v1" />
+    </extensions>
     <ports>
       <port direction="input"    content="midi" name="Control" />
       <port direction="output"    content="audio" name="Left Output" />
