@@ -1,0 +1,29 @@
+diff --git a/test-android/build-scripts/build.sh b/test-android/build-scripts/build.sh
+index ddf9f388..3965e0dc 100755
+--- a/test-android/build-scripts/build.sh
++++ b/test-android/build-scripts/build.sh
+@@ -20,10 +20,10 @@
+         export LIBPATH1=$NDK_TOOLCHAIN/sysroot/usr/lib
+         export LIBPATH2=$NDK_TOOLCHAIN/sysroot/usr/lib/$ARCH-linux-android$ANDROID_TARGET_ABI/$ANDROID_API
+         export LIBPATH3=$NDK_TOOLCHAIN/sysroot/usr/lib/$ARCH-linux-android$ANDROID_TARGET_ABI
+-        export LDFLAGS="-pie -Wl,-rpath-link=$LIBPATH1 -L$LIBPATH1 -Wl,-rpath-link=$LIBPATH2 -L$LIBPATH2 -Wl,-rpath-link=$LIBPATH3 -L$LIBPATH3 -Wl,-rpath-link=$LIBPATH0 -L$LIBPATH0"
++        export LDFLAGS="-static-openmp -pie -Wl,-rpath-link=$LIBPATH1 -L$LIBPATH1 -Wl,-rpath-link=$LIBPATH2 -L$LIBPATH2 -Wl,-rpath-link=$LIBPATH3 -L$LIBPATH3 -Wl,-rpath-link=$LIBPATH0 -L$LIBPATH0"
+         #echo "##vso[task.setvariable variable=LDFLAGS]$LDFLAGS"
+         # Tell configure what tools to use.
+-        export AR=$ANDROID_TARGET-ar
++        export AR=llvm-ar
+         #echo "##vso[task.setvariable variable=AR]$AR"
+         export AS=$ANDROID_TARGET_API-clang
+         #echo "##vso[task.setvariable variable=AS]$AS"
+@@ -33,9 +33,9 @@
+         #echo "##vso[task.setvariable variable=CXX]$CXX"
+         export LD=ld.lld
+         #echo "##vso[task.setvariable variable=LD]$LD"
+-        export STRIP=$ANDROID_TARGET-strip
++        export STRIP=llvm-strip
+         #echo "##vso[task.setvariable variable=STRIP]$STRIP"
+-        export RANLIB=$ANDROID_TARGET-ranlib
++        export RANLIB=llvm-ranlib
+         #echo "##vso[task.setvariable variable=RANLIB]$RANLIB"
+ 
+ 

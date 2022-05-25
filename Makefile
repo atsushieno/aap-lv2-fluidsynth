@@ -3,7 +3,7 @@ ABIS_SIMPLE= x86 x86_64 armeabi-v7a arm64-v8a
 ifeq ('$(ANDROID_SDK_ROOT)', '')
 ANDROID_SDK_ROOT=~/Android/Sdk
 endif
-ANDROID_NDK=$(ANDROID_SDK_ROOT)/ndk/21.4.7075529
+ANDROID_NDK=$(ANDROID_SDK_ROOT)/ndk/24.0.8215888
 
 all: build-all
 
@@ -14,11 +14,14 @@ build-all: \
 
 build-native: dependencies/stamp-fluidsynth dependencies/stamp-aap-aar
 
-external/fluidsynth/test-android/build-scripts/archives/.stamp:
+external/fluidsynth/.patch-stamp:
+	cd external/fluidsynth && patch -i ../../fluidsynth-ndk24.patch -p1 && touch .patch-stamp
+
+external/fluidsynth/test-android/build-scripts/archives/.stamp: external/fluidsynth/.patch-stamp
 	cd external/fluidsynth/test-android/build-scripts && bash ./download.sh && touch archives/.stamp
 
 dependencies/stamp-fluidsynth: make-jniLibsDir external/fluidsynth/test-android/build-scripts/archives/.stamp
-	cd external/fluidsynth/test-android/build-scripts && bash ./build-all-archs.sh
+	cd external/fluidsynth/test-android/build-scripts &&  NDK=$(ANDROID_NDK) bash ./build-all-archs.sh
 	cp -R external/fluidsynth/test-android/build-scripts/build-artifacts/lib/*	aap-fluidsynth/src/main/jniLibs/
 	rm -f aap-fluidsynth/src/main/jniLibs/*/libc++_shared.so
 	touch dependencies/stamp-fluidsynth

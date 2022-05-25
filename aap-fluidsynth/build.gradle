@@ -4,11 +4,12 @@ plugins {
 }
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 32
 
     defaultConfig {
-        minSdkVersion 29
-        targetSdkVersion 31
+        // FIXME: it is temporarily set to 30 to workaround NDK bug (see aap core).
+        minSdkVersion 30
+        targetSdkVersion 32
         versionCode 1
         versionName "$aap_lv2_version"
 
