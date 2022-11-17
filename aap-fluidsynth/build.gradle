@@ -4,12 +4,11 @@ plugins {
 }
 
 android {
-    compileSdkVersion 32
+    compileSdkVersion 33
 
     defaultConfig {
-        // FIXME: it is temporarily set to 30 to workaround NDK bug (see aap core).
-        minSdkVersion 30
-        targetSdkVersion 32
+        minSdkVersion 29
+        targetSdkVersion 33
         versionCode 1
         versionName "$aap_lv2_version"
 
@@ -43,12 +42,9 @@ android {
             path "src/main/cpp/CMakeLists.txt"
         }
     }
-    // FIXME: enable these sections once we migrated to prefab.
-    /*
     buildFeatures {
         prefab true
     }
-    */
 
     // https://stackoverflow.com/questions/66343654/upgrading-to-jetpack-compose-1-0-0-alpha12-with-kotlin-1-4-30-error
     packagingOptions {
