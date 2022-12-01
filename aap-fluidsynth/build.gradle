@@ -4,12 +4,11 @@ plugins {
 }
 
 android {
-    compileSdkVersion 32
+    compileSdkVersion 33
 
     defaultConfig {
-        // FIXME: it is temporarily set to 30 to workaround NDK bug (see aap core).
-        minSdkVersion 30
-        targetSdkVersion 32
+        minSdkVersion 29
+        targetSdkVersion 33
         versionCode 1
         versionName "$aap_lv2_version"
 
@@ -39,16 +38,13 @@ android {
 
     externalNativeBuild {
         cmake {
-            version "3.18.1"
+            version "3.22.1"
             path "src/main/cpp/CMakeLists.txt"
         }
     }
-    // FIXME: enable these sections once we migrated to prefab.
-    /*
     buildFeatures {
         prefab true
     }
-    */
 
     // https://stackoverflow.com/questions/66343654/upgrading-to-jetpack-compose-1-0-0-alpha12-with-kotlin-1-4-30-error
     packagingOptions {
@@ -71,8 +67,8 @@ dependencies {
     implementation "androidx.startup:startup-runtime:1.1.1"
 
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test:rules:1.4.0'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test:rules:1.5.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     androidTestImplementation "org.androidaudioplugin:androidaudioplugin-testing:$aap_version"
 }
