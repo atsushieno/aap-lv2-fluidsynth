@@ -21,7 +21,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-    // See android-audio-plugin-framework/java/androidaudioplugin/build.gradle to find out why it is required...
+    // See aap-core/androidaudioplugin/build.gradle to find out why it is required...
     ndkVersion "$ndk_version"
 
     buildTypes {

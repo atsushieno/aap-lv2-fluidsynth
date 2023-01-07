@@ -4,13 +4,11 @@
 
 cmake_minimum_required(VERSION 3.6.0)
 
-#get_filename_component (AAPDIR "${CMAKE_CURRENT_LIST_DIR}/../../../dependencies/android-audio-plugin-framework" ABSOLUTE)
-
 set (aap-fluidsynth_INCLUDES
         ../../../../external/lv2
         ../../../../external/fluidsynth/test-android/build-scripts/build-artifacts/include/
         # FIXME: once AGP fixes https://issuetracker.google.com/issues/172105145, we can remove this hack.
-        ../../../../external/aap-lv2/external/android-audio-plugin-framework/native/plugin-api/include
+        ../../../../external/aap-lv2/external/aap-core/native/plugin-api/include
         )
 
 set (aap-fluidsynth_SOURCES
@@ -22,7 +20,6 @@ set (aap-fluidsynth_SOURCES
 add_library (aap-fluidsynth SHARED ${aap-fluidsynth_SOURCES})
 
 if (ANDROID)
-    #get_filename_component(AAP_REF_LIB_DIR ${CMAKE_CURRENT_LIST_DIR}/../../../dependencies/android-audio-plugin-framework/java/androidaudioplugin/build/intermediates/library_jni/debug/jni/${CMAKE_ANDROID_ARCH_ABI} ABSOLUTE)
     target_link_directories (aap-fluidsynth
             PUBLIC
             "../jniLibs/${CMAKE_ANDROID_ARCH_ABI}"

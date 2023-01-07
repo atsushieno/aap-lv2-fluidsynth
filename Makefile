@@ -32,8 +32,8 @@ make-jniLibsDir:
 	done
 
 dependencies/stamp-aap-aar:
-	cp external/aap-lv2/external/android-audio-plugin-framework/androidaudioplugin/build/outputs/aar/androidaudioplugin-debug.aar .
-	unzip androidaudioplugin-debug.aar -d dependencies/androidaudioplugin-aar
+	cp external/aap-lv2/external/aap-core/androidaudioplugin/build/outputs/aar/androidaudioplugin-release.aar .
+	unzip androidaudioplugin-release.aar -d dependencies/androidaudioplugin-aar
 	touch dependencies/stamp-aap-aar
 
 build-aap-lv2:
