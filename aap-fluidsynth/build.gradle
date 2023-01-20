@@ -7,6 +7,7 @@ android {
     compileSdkVersion 33
 
     defaultConfig {
+        applicationId "org.androidaudioplugin.ports.lv2.aap_fluidsynth"
         minSdkVersion 29
         targetSdkVersion 33
         versionCode 1

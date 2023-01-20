@@ -13,29 +13,22 @@ jobs:
       uses: actions/checkout@v1
       with:
         submodules: recursive
-    - name: cache NDK
-      uses: actions/cache@v2
-      env:
-        cache-name: cache-ndk
-      with:
-        path: /usr/local/lib/android/sdk/ndk/21.4.7075529
-        key: ${{ runner.os }}-ndk_r21d_linux
     - name: cache AVD
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       env:
         cache-name: cache-avd
       with:
         path: /home/runner/.android/gradle/avd
         key: ${{ runner.os }}-gradle-avd
     - name: cache gradle caches
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       env:
         cache-name: cache-gradle-caches
       with:
         path: /home/runner/.gradle/caches/
         key: ${{ runner.os }}-gradle-caches
     - name: cache fluidsynth deps archives
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       env:
         cache-name: cache-fluidsynth-deps-archives
       with:
@@ -46,57 +39,47 @@ jobs:
       run: |
         sudo apt-get update
     - name: set up JDK 11
-      uses: actions/setup-java@v1
+      uses: actions/setup-java@v3
       with:
         java-version: 11
+        distribution: temurin
     - name: apt install
       run: |
         echo y | sudo apt-get install doxygen libgrpc++-dev libgrpc-dev libprotobuf-dev graphviz cmake ninja-build liblilv-dev gettext
-    - name: stupid NDK setup workaround for GitHub Actions
-      run: sudo chmod 777 /usr/local/lib/android/sdk/ && mkdir -p /usr/local/lib/android/sdk/ndk
     - name: build
       run: make
-      env:
-        NDK: /usr/local/lib/android/sdk/ndk/21.3.6528147
     - name: upload artifact
       if: success()
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: aap-fluidsynth-debug.apk
         path: ./aap-fluidsynth/build/outputs/apk/debug/aap-fluidsynth-debug.apk
   
   osx-build:
     name: build on osx
-    runs-on: macos-10.15
+    runs-on: macos-12
     if: false
     steps:
     - name: checkout
       uses: actions/checkout@v1
       with:
         submodules: recursive
-    - name: cache NDK
-      uses: actions/cache@v2
-      env:
-        cache-name: cache-ndk
-      with:
-        path: /Users/runner/Library/Android/sdk/ndk/21.4.7075529
-        key: ${{ runner.os }}-ndk_r21d_osx
     - name: cache AVD
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       env:
         cache-name: cache-avd
       with:
         path: /Users/runner/.android/gradle/avd
         key: ${{ runner.os }}-gradle-avd
     - name: cache gradle caches
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       env:
         cache-name: cache-gradle-caches
       with:
         path: /Users/runner/.gradle/caches/
         key: ${{ runner.os }}-gradle-caches
     - name: cache fluidsynth deps archives
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       env:
         cache-name: cache-fluidsynth-deps-archives
       with:
@@ -104,9 +87,10 @@ jobs:
         # bump rX every time we update deps versions
         key: ${{ runner.os }}-fluidsynth-deps-archives-r1
     - name: set up JDK 11
-      uses: actions/setup-java@v1
+      uses: actions/setup-java@v3
       with:
         java-version: 11
+        distribution: temurin
     - name: install deps
       run: |
         brew install cmake doxygen ninja graphviz lilv
