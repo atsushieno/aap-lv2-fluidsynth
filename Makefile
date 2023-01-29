@@ -22,13 +22,13 @@ external/fluidsynth/test-android/build-scripts/archives/.stamp: external/fluidsy
 
 dependencies/stamp-fluidsynth: make-jniLibsDir external/fluidsynth/test-android/build-scripts/archives/.stamp
 	cd external/fluidsynth/test-android/build-scripts &&  NDK=$(ANDROID_NDK) bash ./build-all-archs.sh
-	cp -R external/fluidsynth/test-android/build-scripts/build-artifacts/lib/*	aap-fluidsynth/src/main/jniLibs/
-	rm -f aap-fluidsynth/src/main/jniLibs/*/libc++_shared.so
+	cp -R external/fluidsynth/test-android/build-scripts/build-artifacts/lib/*	app/src/main/jniLibs/
+	rm -f app/src/main/jniLibs/*/libc++_shared.so
 	touch dependencies/stamp-fluidsynth
 
 make-jniLibsDir:
 	for a in $(ABIS_SIMPLE) ; do \
-		mkdir -p aap-fluidsynth/src/main/jniLibs/$$a ; \
+		mkdir -p app/src/main/jniLibs/$$a ; \
 	done
 
 dependencies/stamp-aap-aar:

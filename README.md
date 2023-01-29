@@ -8,7 +8,7 @@ The plugin application itself is not really featureful yet. The SoundFont file i
 
 `make` should take care of the builds. See [GitHub Actions script](.github/workflows/actions.yml) for further normative setup.
 
-Building fluidsynth takes a while, but once native libraries are built and then automatically copied into `aap-fluidsynth/src/main/jniLibs`, then you don't have to build them again. Android Studio run/debug is usable (or `./gradlew *`).
+Building fluidsynth takes a while, but once native libraries are built and then automatically copied into `app/src/main/jniLibs`, then you don't have to build them again. Android Studio run/debug is usable (or `./gradlew *`).
 
 ## Hacking
 
@@ -26,6 +26,6 @@ LV2 (repository for the headers) is under the ISC license.
 
 `fluidsynth` is distributed under the LGPL v2.1 license.
 
-`aap-fluidsynth/src/main/assets/FluidR3Mono_GM.sf3` is a binary copy of the same file from [`fluidr3mono-gm-soundfont` debian package](https://ubuntu.pkgs.org/18.04/ubuntu-universe-amd64/fluidr3mono-gm-soundfont_2.315-4_all.deb.html) and it is licensed under the MIT license.
+`app/src/main/assets/FluidR3Mono_GM.sf3` is a binary copy of the same file from [`fluidr3mono-gm-soundfont` debian package](https://ubuntu.pkgs.org/18.04/ubuntu-universe-amd64/fluidr3mono-gm-soundfont_2.315-4_all.deb.html) and it is licensed under the MIT license.
 
 The entire plugin application bundles `androidaudioplugin-lv2` AAR module from `aap-lv2`, and `androidaudioplugin` AAR module, and is packaged into one application.
