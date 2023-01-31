@@ -6,4 +6,4 @@ on:
 
 jobs:
   build-dist:
-    uses: atsushieno/aap-lv2/.github/workflows/build-dist-app.yml@9f7d425296d8b8b6b4c7e47ddb003745bde4a403
+    uses: atsushieno/aap-lv2/.github/workflows/build-dist-app.yml@053ae29617d425c1d19c1b85376f51835882f1cc

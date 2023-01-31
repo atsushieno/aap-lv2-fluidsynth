@@ -40,5 +40,5 @@ build-aap-lv2:
 	cd external/aap-lv2 && make build-non-app
 
 build-java:
-	ANDROID_SDK_ROOT=$(ANDROID_SDK_ROOT) ./gradlew build
+	ANDROID_SDK_ROOT=$(ANDROID_SDK_ROOT) ./gradlew build bundle
  
