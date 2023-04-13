@@ -11,7 +11,7 @@ android {
         minSdkVersion 29
         targetSdkVersion 33
         versionCode 1
-        versionName "$aap_lv2_version"
+        versionName libs.versions.aap.lv2.get()
 
         externalNativeBuild {
             cmake {
@@ -23,7 +23,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     // See aap-core/androidaudioplugin/build.gradle to find out why it is required...
-    ndkVersion "$ndk_version"
+    ndkVersion libs.versions.ndk.get()
 
     buildTypes {
         debug {
@@ -62,6 +62,7 @@ dependencies {
     implementation libs.aap.core
     implementation libs.aap.midi.device.service
     implementation libs.aap.ui.compose
+    implementation libs.aap.ui.web
     implementation libs.startup.runtime
 
     testImplementation libs.junit
