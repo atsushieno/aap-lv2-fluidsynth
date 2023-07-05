@@ -7,8 +7,6 @@ cmake_minimum_required(VERSION 3.6.0)
 set (aap-fluidsynth_INCLUDES
         ../../../../external/lv2
         ../../../../external/fluidsynth/test-android/build-scripts/build-artifacts/include/
-        # FIXME: once AGP fixes https://issuetracker.google.com/issues/172105145, we can remove this hack.
-        ../../../../external/aap-lv2/external/aap-core/native/plugin-api/include
         )
 
 set (aap-fluidsynth_SOURCES
@@ -23,10 +21,6 @@ if (ANDROID)
     target_link_directories (aap-fluidsynth
             PUBLIC
             "../jniLibs/${CMAKE_ANDROID_ARCH_ABI}"
-            # It is really really really stupid, but due to https://issuetracker.google.com/issues/120166563 (among many other issues) we cannot enable prefab yet, which is
-            # supposed to resolve this path to give appropriate -L argument to ld. What we do instead is to download AAP core aar, extract
-            # its content, and give its path to libandroidaudioplugin.so. It is really absurd, and not safe, but there is no other way.
-            "../../../../dependencies/androidaudioplugin-aar/jni/${CMAKE_ANDROID_ARCH_ABI}"
             )
 endif (ANDROID)
 
@@ -47,7 +41,15 @@ target_compile_options (aap-fluidsynth
         -Wshadow-field
         )
 
-target_link_libraries (aap-fluidsynth android log androidaudioplugin fluidsynth)
+find_package(androidaudioplugin REQUIRED CONFIG)
+find_package(androidaudioplugin-lv2 REQUIRED CONFIG)
+
+target_link_libraries (aap-fluidsynth
+        android
+        log
+        androidaudioplugin::androidaudioplugin
+        androidaudioplugin-lv2::androidaudioplugin-lv2
+        fluidsynth)
 
 # You can set it via build.gradle.
 if (${AAP_ENABLE_ASAN})
