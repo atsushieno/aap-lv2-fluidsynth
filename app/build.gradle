@@ -52,8 +52,12 @@ android {
             jniLibs.useLegacyPackaging = true
     }
 
-    aaptOptions {
+    namespace 'org.androidaudioplugin.ports.lv2.aap_fluidsynth'
+    androidResources {
         noCompress 'sf3'
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
     }
 }
 
@@ -68,6 +72,8 @@ dependencies {
     testImplementation libs.junit
     androidTestImplementation libs.aap.testing
     androidTestImplementation libs.test.core
+    androidTestImplementation libs.test.rules
+    androidTestImplementation libs.test.runner
     androidTestImplementation libs.test.ext.junit
 }
 

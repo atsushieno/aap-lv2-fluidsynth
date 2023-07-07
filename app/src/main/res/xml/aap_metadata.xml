@@ -2,7 +2,7 @@
   <plugin name="aap-fluidsynth" category="Instrument" developer="AAP Developers"
     unique-id="lv2:https://github.com/atsushieno/aap-fluidsynth"
     library="libandroidaudioplugin-lv2.so" entrypoint="GetAndroidAudioPluginFactoryLV2Bridge"
-    gui:ui-view-factory="org.androidaudioplugin.ui.web.AudioPluginWebViewFactory"
+    gui:ui-view-factory="org.androidaudioplugin.ui.compose.ComposeAudioPluginViewFactory"
     xmlns:gui="urn://androidaudioplugin.org/extensions/gui">
     <extensions>
         <extensions>

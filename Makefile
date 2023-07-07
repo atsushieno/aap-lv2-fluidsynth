@@ -12,7 +12,7 @@ build-all: \
 	build-native \
 	build-java
 
-build-native: dependencies/stamp-fluidsynth dependencies/stamp-aap-aar
+build-native: dependencies/stamp-fluidsynth
 
 external/fluidsynth/.patch-stamp:
 	cd external/fluidsynth && patch -i ../../fluidsynth-ndk24.patch -p1 && touch .patch-stamp
@@ -30,11 +30,6 @@ make-jniLibsDir:
 	for a in $(ABIS_SIMPLE) ; do \
 		mkdir -p app/src/main/jniLibs/$$a ; \
 	done
-
-dependencies/stamp-aap-aar:
-	cp external/aap-lv2/external/aap-core/androidaudioplugin/build/outputs/aar/androidaudioplugin-release.aar .
-	unzip androidaudioplugin-release.aar -d dependencies/androidaudioplugin-aar
-	touch dependencies/stamp-aap-aar
 
 build-aap-lv2:
 	cd external/aap-lv2 && make build-non-app
